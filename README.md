@@ -1,89 +1,91 @@
-﻿# Mini E-Commerce вЂ“ Full-Stack Web Application
+﻿# Mini E-Commerce – Full-Stack Web Application
 
-Eine containerisierte E-Commerce-Webanwendung mit **ASP.NET Core, C#, React, TypeScript und PostgreSQL**. Das Projekt demonstriert die Entwicklung einer REST-API, die persistente Speicherung relationaler Daten, die Verwaltung von Produkten sowie die Verarbeitung von WarenkГ¶rben und Bestellungen.
-
-Der Schwerpunkt liegt auf einer nachvollziehbaren Backend-Struktur, der Integration von Frontend und Backend sowie einer reproduzierbaren lokalen Entwicklungsumgebung mit Docker Compose.
+Eine containerisierte E-Commerce-Webanwendung mit **C#, ASP.NET Core 10, React, TypeScript und PostgreSQL**. Das Projekt demonstriert die Entwicklung einer REST-API, die Speicherung relationaler Daten sowie typische Abläufe eines Online-Shops – von der Produktverwaltung über den Warenkorb bis zur Bestellung.
 
 ## Inhaltsverzeichnis
 
-- [ProjektГјbersicht](#projektГјbersicht)
-- [Screenshots und Funktionen](#screenshots-und-funktionen)
+- [Projektübersicht](#projektübersicht)
+- [Screenshots](#screenshots)
 - [Technologie-Stack](#technologie-stack)
 - [Architektur und Projektstruktur](#architektur-und-projektstruktur)
-- [FunktionalitГ¤ten](#funktionalitГ¤ten)
+- [Funktionalitäten](#funktionalitäten)
 - [Installation und Start](#installation-und-start)
 - [REST-API und Swagger](#rest-api-und-swagger)
-- [MГ¶gliche Erweiterungen](#mГ¶gliche-erweiterungen)
+- [Mögliche Erweiterungen](#mögliche-erweiterungen)
 
 ---
 
-## ProjektГјbersicht
+## Projektübersicht
 
-Die Anwendung bildet grundlegende AblГ¤ufe eines Online-Shops ab. Produkte werden Гјber eine WeboberflГ¤che angezeigt und verwaltet. Kunden kГ¶nnen Produkte in einen Warenkorb legen und eine Bestellung aufgeben. Die Backend-API verarbeitet die Anfragen und persistiert die Daten in einer PostgreSQL-Datenbank.
+Die Anwendung verbindet ein React-Frontend mit einem ASP.NET-Core-Backend und einer PostgreSQL-Datenbank. Produkte können angezeigt und verwaltet werden. Kunden können Produkte in einen Warenkorb legen und Bestellungen aufgeben.
 
-Das Projekt verbindet eine React-basierte BenutzeroberflГ¤che mit einem ASP.NET-Core-Backend und einer relationalen Datenbank. Die Komponenten werden Гјber Docker Compose gemeinsam gestartet.
+Die Komponenten werden mithilfe von Docker Compose gemeinsam gestartet.
 
 **Projektziele:**
 
 - Entwicklung einer REST-API mit C# und ASP.NET Core
-- Trennung von fachlicher Logik, Anwendungslogik, Datenzugriff und API
+- Strukturierung des Backends in mehrere Verantwortungsbereiche
 - Datenpersistenz mit Entity Framework Core und PostgreSQL
-- Umsetzung typischer E-Commerce-Prozesse
+- Umsetzung grundlegender E-Commerce-Funktionalitäten
 - Integration eines TypeScript-Frontends
-- Containerisierung der Anwendung mit Docker Compose
-- Dokumentation und ГњberprГјfung der API mit Swagger UI
+- Containerisierung mit Docker Compose
+- Dokumentation und Testen der API mit Swagger UI
 
-## Screenshots und Funktionen
+## Screenshots
 
 ### 1. Produktkatalog
 
-Der Produktkatalog bildet den Einstiegspunkt der Anwendung. Er zeigt die verfГјgbaren Produkte mit ihren wichtigsten Informationen und Preisen.
+Der Produktkatalog zeigt die verfügbaren Produkte und deren Preise.
 
-![Produktkatalog mit den verfГјgbaren Produkten](screenshots/01-product-catalog.jpg)
+![Produktkatalog](screenshots/01-product-catalog.jpg)
 
-### 2. Produktverwaltung
+### 2. Warenkorb
 
-Die VerwaltungsoberflГ¤che ermГ¶glicht die Гњbersicht Гјber die gespeicherten Produkte und stellt die entsprechenden Verwaltungsaktionen bereit.
+Der Warenkorb fasst ausgewählte Produkte und deren Mengen zusammen.
 
-![Produktverwaltung](screenshots/05-product-management.jpg)
+![Warenkorb mit ausgewählten Produkten](screenshots/02-cart-contents.jpg)
 
-### 3. Produktformular
+### 3. Bestellabschluss
 
-Гњber das Produktformular kГ¶nnen Produktdaten erfasst oder bearbeitet werden. Die eingegebenen Daten werden an das Backend Гјbermittelt.
-
-![Formular zum Erstellen oder Bearbeiten eines Produkts](screenshots/04-product-form.jpg)
-
-### 4. Warenkorb
-
-Im Warenkorb werden die ausgewГ¤hlten Produkte und deren Mengen zusammengefasst. Die Гњbersicht dient als Grundlage fГјr den Bestellvorgang.
-
-![Warenkorb mit ausgewГ¤hlten Produkten](screenshots/02-cart-contents.jpg)
-
-### 5. Bestellabschluss
-
-Der Bestellvorgang zeigt den erfolgreichen Abschluss einer Bestellung in der Anwendung.
+Die Anwendung bestätigt den erfolgreichen Abschluss einer Bestellung.
 
 ![Erfolgreich aufgegebene Bestellung](screenshots/03-order-placed.jpg)
 
-### 6. REST-API mit Swagger UI
+### 4. Produktformular
 
-Die REST-API kann Гјber Swagger UI erkundet und direkt getestet werden. Die folgenden Screenshots dokumentieren die Produkt-Endpunkte und eine Beispielanfrage zum Anlegen eines Produkts.
+Das Formular ermöglicht die Eingabe und Bearbeitung von Produktdaten.
 
-**Swagger UI вЂ“ API-Гњbersicht**
+![Produktformular](screenshots/04-product-form.jpg)
 
-![Гњbersicht der REST-API in Swagger UI](screenshots/06-swagger-api.jpg)
+### 5. Produktverwaltung
 
-**GET-Endpunkt вЂ“ Produkte abrufen**
+Die Verwaltungsoberfläche zeigt die verfügbaren Produkte und die zugehörigen Verwaltungsaktionen.
 
-![GET-Endpunkt in Swagger UI](screenshots/07-swagger-api-get.jpg)
+![Produktverwaltung](screenshots/05-product-management.jpg)
 
-**POST-Endpunkt вЂ“ Produkt anlegen**
+### 6. Swagger UI – API-Übersicht
 
-![POST-Endpunkt mit Request Body](screenshots/08-swagger-api-post.jpg)
+Swagger UI dokumentiert die verfügbaren API-Endpunkte und ermöglicht das Testen von HTTP-Anfragen.
 
-**POST-Endpunkt вЂ“ Ergebnis der Anfrage**
+![Swagger API-Übersicht](screenshots/06-swagger-api.jpg)
 
-![Antwort des POST-Endpunkts](screenshots/09-swagger-api-post-response.jpg)
+### 7. GET-Endpunkt – Produkte abrufen
+
+Beispiel für das Abrufen von Produktdaten über die REST-API.
+
+![GET-Endpunkt in Swagger](screenshots/07-swagger-api-get.jpg)
+
+### 8. POST-Endpunkt – Produkt anlegen
+
+Beispiel für eine Anfrage zum Anlegen eines Produkts.
+
+![POST-Endpunkt in Swagger](screenshots/08-swagger-api-post.jpg)
+
+### 9. POST-Endpunkt – API-Antwort
+
+Beispiel für die Antwort der API nach dem Absenden einer Anfrage.
+
+![POST-Antwort in Swagger](screenshots/09-swagger-api-post-response.jpg)
 
 ---
 
@@ -91,89 +93,83 @@ Die REST-API kann Гјber Swagger UI erkundet und direkt getestet werden. Die fo
 
 ### Backend
 
-- **C#**
-- **ASP.NET Core 10 Web API**
-- **Entity Framework Core**
-- **REST-API**
-- **Swagger / OpenAPI**
+- C#
+- ASP.NET Core 10 Web API
+- Entity Framework Core
+- REST-API
+- Swagger / OpenAPI
 
 ### Frontend
 
-- **React**
-- **TypeScript**
-- **Vite**
-- **CSS**
+- React
+- TypeScript
+- Vite
+- CSS
 
 ### Datenbank und Infrastruktur
 
-- **PostgreSQL 15**
-- **Docker**
-- **Docker Compose**
-- **Nginx** fГјr die Bereitstellung des Frontends
+- PostgreSQL 15
+- Docker
+- Docker Compose
+- Nginx für die Bereitstellung des Frontends
 
 ---
 
 ## Architektur und Projektstruktur
 
-Das Projekt ist in mehrere Verantwortungsbereiche aufgeteilt. Die API verarbeitet HTTP-Anfragen, die Anwendungsschicht bГјndelt anwendungsbezogene AblГ¤ufe, die DomГ¤nenschicht enthГ¤lt fachliche Modelle und die Infrastruktur kГјmmert sich um technische Implementierungen wie den Datenzugriff.
+Das Backend ist in mehrere Verantwortungsbereiche gegliedert. Die API verarbeitet HTTP-Anfragen, die Anwendungsschicht enthält anwendungsbezogene Komponenten, die Domänenschicht bildet fachliche Modelle ab und die Infrastruktur übernimmt technische Aufgaben wie den Datenzugriff.
 
-Die Struktur orientiert sich an den Prinzipien einer geschichteten Architektur. Die konkrete Umsetzung und die AbhГ¤ngigkeiten zwischen den Schichten sind im Quellcode nachvollziehbar.
+Die Struktur orientiert sich an den Prinzipien einer geschichteten Architektur.
 
 ```text
 EcommerceBackend/
-в”‚
-в”њв”Ђв”Ђ Ecommerce.Domain/
-в”‚   в””в”Ђв”Ђ Fachliche Modelle und DomГ¤nenlogik
-в”‚
-в”њв”Ђв”Ђ Ecommerce.Application/
-в”‚   в””в”Ђв”Ђ DTOs, Anwendungslogik und Interfaces
-в”‚
-в”њв”Ђв”Ђ Ecommerce.Infrastructure/
-в”‚   в””в”Ђв”Ђ Datenzugriff und Persistenz
-в”‚
-в”њв”Ђв”Ђ Ecommerce.Api/
-в”‚   в””в”Ђв”Ђ REST-Controller, Konfiguration und API-Einstiegspunkt
-в”‚
-в”њв”Ђв”Ђ ecommerce-frontend/
-в”‚   в””в”Ђв”Ђ React-, TypeScript- und CSS-Anwendung
-в”‚
-в”њв”Ђв”Ђ docker-compose.yml
-в”њв”Ђв”Ђ .env.example
-в”њв”Ђв”Ђ .gitignore
-в””в”Ђв”Ђ README.md
+├── Ecommerce.Domain/
+│   └── Fachliche Modelle und Domänenlogik
+├── Ecommerce.Application/
+│   └── DTOs, Anwendungslogik und Interfaces
+├── Ecommerce.Infrastructure/
+│   └── Datenzugriff und Persistenz
+├── Ecommerce.Api/
+│   └── REST-Controller und API-Einstiegspunkt
+├── ecommerce-frontend/
+│   └── React-, TypeScript- und CSS-Anwendung
+├── screenshots/
+│   └── Screenshots der Anwendung und API
+├── docker-compose.yml
+├── .env.example
+├── .gitignore
+└── README.md
 ```
-
-Die Verzeichnisbeschreibungen geben die vorgesehene Verantwortung der jeweiligen Bereiche wieder. Details kГ¶nnen je nach tatsГ¤chlicher Implementierung abweichen.
 
 ---
 
-## FunktionalitГ¤ten
+## Funktionalitäten
 
-### Produktkatalog und Produktverwaltung
+### Produktkatalog und Verwaltung
 
-- Produkte abrufen und im Frontend darstellen
+- Produkte abrufen und anzeigen
 - Produktdaten anlegen und bearbeiten
-- Produkte Гјber die VerwaltungsoberflГ¤che verwalten
-- Produktdaten dauerhaft in der Datenbank speichern
+- Produkte über die Verwaltungsoberfläche verwalten
+- Produktdaten in PostgreSQL speichern
 
 ### Warenkorb und Bestellungen
 
 - Produkte in den Warenkorb legen
-- AusgewГ¤hlte Produkte und Mengen anzeigen
-- Bestellung Гјber den Checkout aufgeben
+- Ausgewählte Produkte und Mengen anzeigen
+- Bestellungen über den Checkout aufgeben
 - Bestellinformationen im Backend verarbeiten
 
 ### Backend und Datenbank
 
-- HTTP-Endpunkte fГјr die Kommunikation zwischen Frontend und Backend
-- Datenbankzugriff Гјber Entity Framework Core
+- REST-Endpunkte für die Kommunikation zwischen Frontend und Backend
+- Datenbankzugriff mit Entity Framework Core
 - Persistenz mit PostgreSQL
-- API-Dokumentation und interaktive Tests Гјber Swagger UI
+- Interaktive API-Dokumentation mit Swagger UI
 
 ### Containerisierung
 
-- Gemeinsamer Start der Anwendungskomponenten Гјber Docker Compose
-- Separater Container fГјr die Datenbank
+- Gemeinsamer Start der konfigurierten Dienste über Docker Compose
+- Separater Datenbankcontainer
 - Containerisiertes Backend und Frontend
 
 ---
@@ -184,7 +180,6 @@ Die Verzeichnisbeschreibungen geben die vorgesehene Verantwortung der jeweiligen
 
 - [Git](https://git-scm.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- Docker Compose
 
 ### 1. Repository klonen
 
@@ -195,7 +190,7 @@ cd mini-e-commerce
 
 ### 2. Umgebungsvariablen konfigurieren
 
-Erstelle im Projektverzeichnis eine lokale `.env`-Datei auf Grundlage der Beispieldatei.
+Erstelle eine lokale `.env`-Datei anhand der Beispieldatei.
 
 Unter Windows PowerShell:
 
@@ -203,7 +198,7 @@ Unter Windows PowerShell:
 Copy-Item .env.example .env
 ```
 
-Г–ffne anschlieГџend `.env` und trage ein eigenes Datenbankpasswort ein:
+Passe die Werte in `.env` an:
 
 ```dotenv
 POSTGRES_DB=EcommerceDb
@@ -211,28 +206,24 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=CHANGE_ME
 ```
 
-Ersetze `CHANGE_ME` durch dein gewГјnschtes Passwort. Die `.env`-Datei enthГ¤lt lokale Konfiguration und darf nicht in das Г¶ffentliche Repository hochgeladen werden.
+Ersetze `CHANGE_ME` durch ein eigenes Datenbankpasswort. Die lokale `.env`-Datei darf nicht in das öffentliche Repository hochgeladen werden.
 
-**Hinweis:** Wenn bereits ein PostgreSQL-Datenbankvolume existiert, kann die Datenbank weiterhin das bei der erstmaligen Initialisierung verwendete Passwort erwarten.
+**Hinweis:** Bei einem bereits initialisierten PostgreSQL-Datenbankvolume kann weiterhin das ursprünglich verwendete Passwort erforderlich sein.
 
 ### 3. Anwendung starten
 
-Stelle sicher, dass Docker Desktop lГ¤uft. FГјhre anschlieГџend im Projektverzeichnis aus:
+Starte Docker Desktop und führe im Projektverzeichnis aus:
 
 ```bash
 docker compose up --build
 ```
 
-Docker Compose erstellt die benГ¶tigten Container und startet die konfigurierten Dienste.
+### 4. Anwendung öffnen
 
-### 4. Anwendung Г¶ffnen
-
-| Komponente | Lokale Adresse |
+| Komponente | Adresse |
 |---|---|
 | Frontend | http://localhost:5173 |
-| Backend / Swagger UI | http://localhost:5083/swagger |
-
-Die Ports entsprechen der lokalen Projektkonfiguration.
+| Backend und Swagger UI | http://localhost:5083/swagger |
 
 Zum Stoppen der Container:
 
@@ -240,42 +231,36 @@ Zum Stoppen der Container:
 docker compose down
 ```
 
-Dieser Befehl stoppt die Container, ohne das Datenbankvolume ausdrГјcklich zu lГ¶schen.
+Dieser Befehl entfernt nicht ausdrücklich das Datenbankvolume.
 
 ---
 
 ## REST-API und Swagger
 
-Swagger UI stellt die dokumentierten API-Endpunkte interaktiv dar. DarГјber lassen sich unterstГјtzte HTTP-Anfragen ausfГјhren und die Antworten des Backends ГјberprГјfen.
+Die API kann über Swagger UI erkundet und getestet werden.
 
-Г–ffne:
+**Swagger UI:** http://localhost:5083/swagger
 
-http://localhost:5083/swagger
+Dort lassen sich die dokumentierten Endpunkte aufrufen, Request-Daten übermitteln und die Antworten des Backends überprüfen.
 
-Die verfГјgbaren Endpunkte und ihre Request- sowie Response-Modelle sind direkt in der Swagger-OberflГ¤che dokumentiert.
-
-Die Screenshots im Abschnitt [Screenshots und Funktionen](#screenshots-und-funktionen) zeigen beispielhaft die API-Гњbersicht, das Abrufen von Produkten und das Anlegen eines Produkts.
+Die Screenshots oben zeigen beispielhaft die API-Übersicht, das Abrufen von Produkten und das Anlegen eines Produkts.
 
 ---
 
-## MГ¶gliche Erweiterungen
+## Mögliche Erweiterungen
 
-Folgende Funktionen kГ¶nnten das Projekt in Zukunft ergГ¤nzen:
-
-- Automatisierte Unit- und Integrationstests
+- Unit- und Integrationstests
 - Authentifizierung und rollenbasierte Autorisierung
 - Erweiterte Such-, Filter- und Sortierfunktionen
 - Erweiterte Bestellverwaltung
 - CI/CD-Pipeline
-- Deployment in einer Cloud-Umgebung
-- ZusГ¤tzliche Sicherheits- und Performance-Tests
+- Cloud-Deployment
+- Zusätzliche Sicherheits- und Performance-Tests
 
-Diese Punkte sind mГ¶gliche Erweiterungen und keine Aussage Гјber bereits implementierte Funktionen.
+Diese Punkte sind mögliche Erweiterungen und keine Aussage über bereits implementierte Funktionen.
 
 ---
 
 ## Repository
 
 **GitHub:** https://github.com/romsches/mini-e-commerce
-
-Das Repository enthГ¤lt den Quellcode der Webanwendung, die Container-Konfiguration und diese Projektdokumentation.
