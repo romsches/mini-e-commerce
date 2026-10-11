@@ -14,6 +14,7 @@ using Serilog;
  * CORS policies, Clean Architecture layers, middleware, and runtime EF Core database migrations.
  * Standards: Senior Backend Architecture (.NET / C# - 2026)
  */
+
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. Centralized Serilog configuration with third-party log filtering

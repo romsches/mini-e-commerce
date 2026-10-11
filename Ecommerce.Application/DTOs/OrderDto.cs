@@ -1,5 +1,9 @@
 namespace Ecommerce.Application.DTOs;
 
+/// <summary>
+/// Data Transfer Object (DTO) representing an order in the e-commerce system.
+/// Encapsulates order metadata, status, and associated line items.
+/// </summary>
 public class OrderDto
 {
     public Guid Id { get; set; }
@@ -22,6 +26,9 @@ public class OrderDto
     }
 }
 
+/// <summary>
+/// Data Transfer Object (DTO) representing an individual item within an order.
+/// </summary>
 public class OrderItemDto
 {
     public Guid Id { get; set; }

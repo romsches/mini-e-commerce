@@ -1,15 +1,10 @@
 namespace Ecommerce.Domain.Entities;
 
-/**
- * Enterprise Domain Order Item Entity.
- * Represents an individual line item snapshot within an order aggregate,
- * encapsulating product identification, purchased quantities, historical unit prices,
- * and computed total pricing invariants.
- * Standards: Senior Backend Architecture (.NET / C# - 2026)
- */
-
 /// <summary>
-/// Repräsentiert eine einzelne Position (einen Artikel) innerhalb einer Bestellung.
+/// Represents an individual line item snapshot within an order aggregate,
+/// encapsulating product identification, purchased quantities, historical unit prices,
+/// and computed total pricing invariants.
+/// Standards: Senior Backend Architecture (.NET / C# - 2026)
 /// </summary>
 public class OrderItem
 {

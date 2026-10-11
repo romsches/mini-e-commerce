@@ -6,13 +6,17 @@ using Microsoft.EntityFrameworkCore;
 namespace Ecommerce.Infrastructure.Repositories;
 
 /// <summary>
-/// Implementierung des <see cref="IProductRepository"/> für den relationalen Datenzugriff 
-/// auf Produkt-Entitäten mittels Entity Framework Core und PostgreSQL.
+/// Implementation of the <see cref="IProductRepository"/> interface for relational data access 
+/// of product entities using Entity Framework Core and PostgreSQL.
 /// </summary>
 public class ProductRepository : IProductRepository
 {
     private readonly EcommerceDbContext _context;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductRepository"/> class.
+    /// </summary>
+    /// <param name="context">The database context for the e-commerce system.</param>
     public ProductRepository(EcommerceDbContext context)
     {
         _context = context ?? throw new ArgumentNullException(nameof(context));
