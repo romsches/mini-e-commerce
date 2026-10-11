@@ -1,0 +1,20 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vs/
+.idea/
+
+# .NET
+**/bin/
+**/obj/
+
+# Node.js
+node_modules/
+**/node_modules/
+dist/
+
+# Logs
+*.log

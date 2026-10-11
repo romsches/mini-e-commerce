@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: ecommerce_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecommerce_backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+    ports:
+      - "5083:8080"
+    depends_on:
+      - postgres
+    networks:
+      - ecommerce-net
+
+  frontend:
+    build:
+      context: ./ecommerce-frontend
+      dockerfile: Dockerfile
+    container_name: ecommerce_frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      - ecommerce-net
+
+volumes:
+  postgres_data:
+
+networks:
+  ecommerce-net:
+    driver: bridge
